@@ -78,8 +78,16 @@ def make_list_handler(template, path, schema, table_name, fields):
     template.stream(context).dump(open(filepath, "w"))
 
 
-def make_crud(template_path, path, schema, table_name, fields):
+def make_crud(
+        template_path, path, schema, table_name, fields, handlers_folder):
+    
     handlers_path = os.path.join(path, "handlers")
+
+    if not os.path.exists(handlers_path):
+        os.mkdir(handlers_path)
+        open(os.path.join(handlers_path, "__init__.py"), "w").close()
+
+    handlers_path = os.path.join(path, handlers_folder)
 
     if not os.path.exists(handlers_path):
         os.mkdir(handlers_path)
