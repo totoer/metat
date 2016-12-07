@@ -28,7 +28,7 @@ class UpdateHandler(
         {{ table_name }} = yield self.get_{{ table_name }}({{ table_name }}_id)
 
         if {{ table_name }} is not None:
-            errors = yield self.update_{{ table_name }}({{ table_name_id }}, {
+            errors = yield self.update_{{ table_name }}({{ table_name }}_id, {
                 {%- for field in fields %}
                 "{{ field }}": self.get_argument("{{ field }}", None),
                 {%- endfor %}
