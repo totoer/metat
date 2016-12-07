@@ -1,7 +1,7 @@
 #-*- coding: utf-8 -*-
 
 import tornado.web
-import torando.gen
+import tornado.gen
 import handlers.base_handler
 import mixins.{{ table_name }}_mixin
 
@@ -16,7 +16,7 @@ class CreateHandler(
             "{{ table_name }}/create.html",
             data=None, errors=None)
 
-    @torando.gen.coroutine
+    @tornado.gen.coroutine
     def post(self):
         data, errors = yield self.create_{{ table_name }}({
             {%- for field in fields %}

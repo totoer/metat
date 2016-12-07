@@ -1,6 +1,6 @@
 #-*- coding: utf-8 -*-
 
-import torando.gen
+import tornado.gen
 import handlers.base_handler
 import mixins.{{ table_name }}_mixin
 
