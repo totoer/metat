@@ -9,7 +9,7 @@ import mixins.list_handler_mixin
 class ListHandler(
         handlers.base_handler.BaseHandler,
         mixins.{{ table_name }}_mixin.{{ class_name }}Mixin,
-        mixins.list_handler_mixin):
+        mixins.list_handler_mixin.ListHandlerMixin):
 
     @tornado.gen.coroutine
     def get(self):
