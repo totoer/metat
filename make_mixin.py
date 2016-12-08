@@ -14,17 +14,18 @@ def make_mixin(template_path, path, schema, table_name, fields):
 
     filepath = os.path.join(mixins_path, "{}_mixin.py".format(table_name))
 
-    loader = FileSystemLoader(template_path)
-    env = Environment(loader=loader)
-    template = env.get_template("mixins/mixin.tpl")
-    
-    context = {
-        "schema": schema,
-        "table_name": table_name,
-        "class_name": "".join([l.title() for l in table_name.split("_")]),
-        "table_name_upper": table_name.upper(),
-        "fields": fields,
-        "fields_last_index": len(fields) - 1,
-    }
+    if not os.path.isfile(filepath):
+        loader = FileSystemLoader(template_path)
+        env = Environment(loader=loader)
+        template = env.get_template("mixins/mixin.tpl")
+        
+        context = {
+            "schema": schema,
+            "table_name": table_name,
+            "class_name": "".join([l.title() for l in table_name.split("_")]),
+            "table_name_upper": table_name.upper(),
+            "fields": fields,
+            "fields_last_index": len(fields) - 1,
+        }
 
-    template.stream(context).dump(open(filepath, "w"))
+        template.stream(context).dump(open(filepath, "w"))
